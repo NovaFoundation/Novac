@@ -1,12 +1,21 @@
 package "novex/novac"
 
 import "novex/arbor/Arbor"
+import "novex/spectra/Spectra"
 
 class Novac {
     public static main(String[] args) {
-        let a = new Arbor()
+        let arbor = new Arbor()
         
-        let tree = a.build(args.skip(1))
+        let tree = arbor.build(args.skip(1))
+        
+        let spectra = new Spectra()
+        
+        let valid = spectra.validate(tree)
+        
+        if (!valid) {
+            Console.log("Type validation failed")
+        }
         
         Console.waitForEnter()
     }
