@@ -1,13 +1,13 @@
 package "novex/novac"
 
-import "novex/arbor/Arbor"
+import "novex/astro/Astro"
 import "novex/spectra/Spectra"
 
 class Novac {
     public static main(String[] args) {
-        let arbor = new Arbor()
+        let astro = new Astro()
         
-        let tree = arbor.build(args.skip(1))
+        let tree = astro.build(args.skip(1))
         
         let spectra = new Spectra()
         
