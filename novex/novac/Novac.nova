@@ -1,0 +1,13 @@
+package "novex/novac"
+
+import "novex/arbor/Arbor"
+
+class Novac {
+    public static main(String[] args) {
+        let a = new Arbor()
+        
+        let tree = a.build(args.skip(1))
+        
+        Console.waitForEnter()
+    }
+}
