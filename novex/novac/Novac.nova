@@ -31,7 +31,8 @@ class Novac {
     public optimizeTree(SyntaxTree tree) {
         
     }
+    
+    public linkTree(SyntaxTree tree) {
         
-        Console.waitForEnter()
     }
 }
