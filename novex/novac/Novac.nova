@@ -27,6 +27,10 @@ class Novac {
         
         return valid
     }
+    
+    public optimizeTree(SyntaxTree tree) {
+        
+    }
         
         Console.waitForEnter()
     }
