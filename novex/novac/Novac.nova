@@ -19,10 +19,20 @@ class Novac {
     visible immutable HashMap<String, Bool> flags
     
     public static main(String[] args) {
-        let astro = new Astro()
+        let compiler = new Novac(args)
         
-        let tree = astro.build(args.skip(1))
+        compiler.tree = compiler.buildTree()
+        compiler.typeValidationSuccess = compiler.validateTypes(tree)
         
+        if (!compiler.typeValidationSuccess) {
+            Console.log("Type validation failed")
+        }
+        
+        compiler.optimizeTree(tree)
+        compiler.linkTree(tree)
+        
+        Console.waitForEnter()
+    }
     
     public construct(String[] args) {
         ARGS = args.skip(1)
