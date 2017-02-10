@@ -1,6 +1,10 @@
 package "novex/novac"
 
+import "nova/datastruct/HashMap"
+import "nova/datastruct/ImmutableHashMap"
+
 import "novex/astro/Astro"
+import "novex/astro/tree/SyntaxTree"
 import "novex/spectra/Spectra"
 
 class Novac {
@@ -15,13 +19,14 @@ class Novac {
         
         return astro.build(this)
     }
+    
+    public validateTypes(SyntaxTree tree) -> Bool {
         let spectra = new Spectra()
         
         let valid = spectra.validate(tree)
         
-        if (!valid) {
-            Console.log("Type validation failed")
-        }
+        return valid
+    }
         
         Console.waitForEnter()
     }
