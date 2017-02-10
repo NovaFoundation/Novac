@@ -8,6 +8,8 @@ import "novex/astro/tree/SyntaxTree"
 import "novex/spectra/Spectra"
 
 class Novac {
+    visible final immutable String[] ARGS
+    
     public static main(String[] args) {
         let astro = new Astro()
         
