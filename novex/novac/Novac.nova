@@ -16,6 +16,8 @@ class Novac {
     visible SyntaxTree tree
     visible Bool typeValidationSuccess
     
+    visible immutable HashMap<String, Bool> flags
+    
     public static main(String[] args) {
         let astro = new Astro()
         
