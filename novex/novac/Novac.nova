@@ -14,6 +14,18 @@ class Novac {
         let tree = astro.build(args.skip(1))
         
     
+    public construct(String[] args) {
+        ARGS = args.skip(1)
+        
+        let map = new HashMap<String, Bool>()
+        
+        map["single-thread"] = true
+        
+        flags = map.toImmutable()
+        
+        directoryLocations = ARGS
+    }
+    
     public buildTree() -> SyntaxTree {
         astro = new Astro()
         
