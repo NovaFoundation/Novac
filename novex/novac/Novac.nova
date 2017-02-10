@@ -13,6 +13,7 @@ class Novac {
     visible immutable String[] directoryLocations
     
     visible Astro astro
+    visible SyntaxTree tree
     
     public static main(String[] args) {
         let astro = new Astro()
