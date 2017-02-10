@@ -31,6 +31,29 @@ class Novac {
         compiler.optimizeTree()
         compiler.linkTree()
         
+        let sortedCompileTimes = compiler.tree.compileTimes.toArray().sort({ _.value - _.value })
+        
+        let fileCount = "#sortedCompileTimes.count files"
+        
+        Console.log("============================= #fileCount =============================")
+        
+        for (pair in sortedCompileTimes) {
+            Console.log("#pair.key: #{pair.value}ms")
+        }
+        
+        Console.writeLine()
+        Console.write("Average file parse time: \n")
+        // var Int sum = sortedCompileTimes.reduce<Int>({ _.value + _.value }, 0)
+        
+        var Int sum = sortedCompileTimes.sum({ _.value })
+        // Console.writeLine(sortedCompileTimes.count > 0 ? sum / sortedCompileTimes.count : 0)
+        Console.writeLine("#{sortedCompileTimes.count > 0 ? sum / sortedCompileTimes.count : 0}ms")
+        
+        
+        
+        // Console.log("=============================#{'='.repeat(fileCount.count + 2)}=============================")
+        Console.log("=============================#{"=".repeat(fileCount.count + 2)}=============================")
+        
         Console.waitForEnter()
     }
     
