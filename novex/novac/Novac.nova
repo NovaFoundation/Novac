@@ -22,14 +22,14 @@ class Novac {
         let compiler = new Novac(args)
         
         compiler.tree = compiler.buildTree()
-        compiler.typeValidationSuccess = compiler.validateTypes(tree)
+        compiler.typeValidationSuccess = compiler.validateTypes()
         
         if (!compiler.typeValidationSuccess) {
             Console.log("Type validation failed")
         }
         
-        compiler.optimizeTree(tree)
-        compiler.linkTree(tree)
+        compiler.optimizeTree()
+        compiler.linkTree()
         
         Console.waitForEnter()
     }
@@ -39,7 +39,7 @@ class Novac {
         
         let map = new HashMap<String, Bool>()
         
-        map["single-thread"] = true
+        // map["single-thread"] = true
         
         flags = map.toImmutable()
         
@@ -47,12 +47,12 @@ class Novac {
     }
     
     public buildTree() -> SyntaxTree {
-        astro = new Astro()
+        astro = new Astro(this)
         
-        return astro.build(this)
+        return astro.build()
     }
     
-    public validateTypes(SyntaxTree tree) -> Bool {
+    public validateTypes() -> Bool {
         let spectra = new Spectra()
         
         let valid = spectra.validate(tree)
@@ -60,11 +60,11 @@ class Novac {
         return valid
     }
     
-    public optimizeTree(SyntaxTree tree) {
+    public optimizeTree() {
         
     }
     
-    public linkTree(SyntaxTree tree) {
+    public linkTree() {
         
     }
 }
