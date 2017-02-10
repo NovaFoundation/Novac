@@ -9,6 +9,12 @@ class Novac {
         
         let tree = astro.build(args.skip(1))
         
+    
+    public buildTree() -> SyntaxTree {
+        astro = new Astro()
+        
+        return astro.build(this)
+    }
         let spectra = new Spectra()
         
         let valid = spectra.validate(tree)
