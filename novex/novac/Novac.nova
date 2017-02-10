@@ -10,6 +10,8 @@ import "novex/spectra/Spectra"
 class Novac {
     visible final immutable String[] ARGS
     
+    visible immutable String[] directoryLocations
+    
     public static main(String[] args) {
         let astro = new Astro()
         
