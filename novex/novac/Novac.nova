@@ -42,7 +42,7 @@ class Novac {
         }
         
         Console.writeLine()
-        Console.write("Average file parse time: \n")
+        Console.write("Average file parse time: ")
         // var Int sum = sortedCompileTimes.reduce<Int>({ _.value + _.value }, 0)
         
         var Int sum = sortedCompileTimes.sum({ _.value })
@@ -62,7 +62,7 @@ class Novac {
         
         let map = new HashMap<String, Bool>()
         
-        // map["single-thread"] = true
+        map["single-thread"] = ARGS.contains("--single-thread")
         
         flags = map.toImmutable()
         
