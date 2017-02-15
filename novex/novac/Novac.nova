@@ -8,7 +8,7 @@ import "novex/astro/tree/SyntaxTree"
 import "novex/spectra/Spectra"
 
 class Novac {
-    visible final immutable String[] ARGS
+    visible final immutable HashMap<String, Object> ARGS
     
     visible immutable String[] directoryLocations
     
@@ -58,15 +58,50 @@ class Novac {
     }
     
     public construct(String[] args) {
-        ARGS = args.skip(1)
+        let argsMap = new HashMap<String, Object>()
+        let flags = new HashMap<String, Bool>()
         
-        let map = new HashMap<String, Bool>()
+        var readingInput = true
+        var String pendingValue
         
-        map["single-thread"] = ARGS.contains("--single-thread")
+        let directoryLocations = new String[]
         
-        flags = map.toImmutable()
+        for (arg in args.skip(1)) {
+            if (pendingValue) {
+                argsMap[pendingValue] = arg
+                pendingValue = null
+            } else {
+                var foundArg = true
+                
+                match (arg) {
+                    "-input" =>
+                    "-i" =>
+                        pendingValue = "input"
+                    "--single-thread" =>
+                    "-sync" =>
+                        flags["single-thread"] = true
+                    default => {
+                        foundArg = false
+                        
+                        if (readingInput) {
+                            directoryLocations.add(arg)
+                        } else {
+                            Console.log("Invalid argument '#arg'")
+                            System.exit(1)
+                        }
+                    }
+                }
+                
+                if (foundArg) {
+                    readingInput = false
+                }
+            }
+        }
         
-        directoryLocations = ARGS
+        ARGS = argsMap.toImmutable()
+        
+        this.flags = flags.toImmutable()
+        this.directoryLocations = directoryLocations.toImmutable()
     }
     
     public buildTree() -> SyntaxTree {
