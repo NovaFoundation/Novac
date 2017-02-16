@@ -66,6 +66,8 @@ class Novac {
         
         let directoryLocations = new String[]
         
+        argsMap["input"] = "nova"
+        
         for (arg in args.skip(1)) {
             if (pendingValue) {
                 argsMap[pendingValue] = arg
