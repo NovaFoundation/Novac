@@ -12,9 +12,9 @@ class Novac {
     
     visible immutable String[] directoryLocations
     
-    visible Astro astro
-    visible SyntaxTree tree
-    visible Bool typeValidationSuccess
+    visible var Astro astro
+    visible var SyntaxTree tree
+    visible var Bool typeValidationSuccess
     
     visible immutable HashMap<String, Bool> flags
     
@@ -37,9 +37,9 @@ class Novac {
         
         Console.log("============================= #fileCount =============================")
         
-        for (pair in sortedCompileTimes) {
+        sortedCompileTimes.forEach(pair => {
             Console.log("#pair.key: #{pair.value}ms")
-        }
+        })
         
         Console.writeLine()
         Console.write("Average file parse time: ")
@@ -68,7 +68,7 @@ class Novac {
         
         argsMap["input"] = "nova"
         
-        for (arg in args.skip(1)) {
+        args.skip(1).forEach(arg => {
             if (pendingValue) {
                 argsMap[pendingValue] = arg
                 pendingValue = null
@@ -76,11 +76,9 @@ class Novac {
                 var foundArg = true
                 
                 match (arg) {
-                    "-input" =>
-                    "-i" =>
+                    "-input" => "-i" =>
                         pendingValue = "input"
-                    "--single-thread" =>
-                    "-sync" =>
+                    "--single-thread" => "-sync" =>
                         flags["single-thread"] = true
                     default => {
                         foundArg = false
@@ -98,7 +96,7 @@ class Novac {
                     readingInput = false
                 }
             }
-        }
+        })
         
         ARGS = argsMap.toImmutable()
         
